@@ -8,6 +8,7 @@ public class ArenaproApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ArenaproApplication.class, args);
+		var string = "str";
 	}
 
 }
