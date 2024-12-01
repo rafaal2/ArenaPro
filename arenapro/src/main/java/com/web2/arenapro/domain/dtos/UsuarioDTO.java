@@ -1,11 +1,15 @@
 package com.web2.arenapro.domain.dtos;
 
+import com.web2.arenapro.domain.entities.Reserva;
 import com.web2.arenapro.domain.entities.Usuario;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter
@@ -28,7 +32,7 @@ public class UsuarioDTO {
     @NotBlank(message = "Telefone necessário")
     @Pattern(regexp = "\\d{10,11}", message = "O telefone deve ter 10 ou 11 dígitos")
     private String telefone;
-    // private List<Reserva> reservas
+    private List<ReservaDTO> reservas;
 
     public UsuarioDTO(Usuario entity) {
 
@@ -38,6 +42,9 @@ public class UsuarioDTO {
         this.email = entity.getEmail();
         this.senha = entity.getSenha();
         this.telefone = entity.getTelefone();
+        this.reservas = entity.getReservas() != null
+                ? entity.getReservas().stream().map(ReservaDTO::new).collect(Collectors.toList())
+                : null;
 
     }
 

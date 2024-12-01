@@ -1,5 +1,6 @@
 package com.web2.arenapro.domain.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.web2.arenapro.domain.entities.Reserva;
 import com.web2.arenapro.domain.enums.StatusReserva;
 import jakarta.validation.constraints.Future;
@@ -25,6 +26,7 @@ public class ReservaDTO {
     @NotNull(message = "Quadra obrigatória")
     private Long quadraId;
 
+    @JsonProperty("usuarioId")
     @NotNull(message = "Usuário obrigatório")
     private Long usuarioId;
 
