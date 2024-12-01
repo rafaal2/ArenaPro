@@ -3,6 +3,7 @@ package com.web2.arenapro.application.services;
 import com.web2.arenapro.application.services.exceptions.DatabaseException;
 import com.web2.arenapro.application.services.exceptions.ResourceNotFoundException;
 import com.web2.arenapro.domain.dtos.UsuarioDTO;
+import com.web2.arenapro.domain.entities.Reserva;
 import com.web2.arenapro.domain.entities.Usuario;
 import com.web2.arenapro.domain.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,6 +12,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -79,6 +83,22 @@ public class UsuarioService {
         entity.setSenha(usuarioDTO.getSenha());
         entity.setTelefone(usuarioDTO.getTelefone());
 
-    }
+        if (usuarioDTO.getReservas() != null) {
+            List<Reserva> reservas = usuarioDTO.getReservas().stream()
+                    .map(reservaDTO -> {
+                        Reserva reserva = new Reserva();
+                        reserva.setId(reservaDTO.getId());
+                        reserva.setData(reservaDTO.getData());
+                        reserva.setHorarioInicio(reservaDTO.getHorarioInicio());
+                        reserva.setDuracao(reservaDTO.getDuracao());
+                        reserva.setStatus(reservaDTO.getStatus());
+                        reserva.setUsuario(entity);
+                        return reserva;
+                    }).collect(Collectors.toList());
 
+            entity.setReservas(reservas);
+        } else {
+            entity.setReservas(null);
+        }
+    }
 }
