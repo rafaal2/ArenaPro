@@ -2,7 +2,7 @@ package com.web2.arenapro.application.services;
 
 import com.web2.arenapro.application.services.exceptions.DatabaseException;
 import com.web2.arenapro.application.services.exceptions.ResourceNotFoundException;
-import com.web2.arenapro.domain.dto.HorariosDTO;
+import com.web2.arenapro.domain.dtos.HorariosDTO;
 import com.web2.arenapro.domain.entities.Horarios;
 import com.web2.arenapro.domain.entities.Quadra;
 import com.web2.arenapro.domain.repositories.HorariosRepository;

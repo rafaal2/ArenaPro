@@ -2,7 +2,7 @@ package com.web2.arenapro.application.services;
 
 import com.web2.arenapro.application.services.exceptions.DatabaseException;
 import com.web2.arenapro.application.services.exceptions.ResourceNotFoundException;
-import com.web2.arenapro.domain.dto.QuadraDTO;
+import com.web2.arenapro.domain.dtos.QuadraDTO;
 import com.web2.arenapro.domain.entities.Quadra;
 import com.web2.arenapro.domain.enums.TiposQuadra;
 import com.web2.arenapro.domain.repositories.QuadraRepository;

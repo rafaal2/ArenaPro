@@ -1,7 +1,7 @@
 package com.web2.arenapro.application.controllers;
 
 import com.web2.arenapro.application.services.QuadraService;
-import com.web2.arenapro.domain.dto.QuadraDTO;
+import com.web2.arenapro.domain.dtos.QuadraDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
