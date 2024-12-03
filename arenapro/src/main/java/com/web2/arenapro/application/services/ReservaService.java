@@ -6,6 +6,7 @@ import com.web2.arenapro.domain.dtos.ReservaDTO;
 import com.web2.arenapro.domain.dtos.UsuarioDTO;
 import com.web2.arenapro.domain.entities.Reserva;
 import com.web2.arenapro.domain.entities.Usuario;
+import com.web2.arenapro.domain.repositories.QuadraRepository;
 import com.web2.arenapro.domain.repositories.ReservaRepository;
 import com.web2.arenapro.domain.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,8 +24,8 @@ public class ReservaService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // @Autowired
-    //private QuadraRepository quadraRepository;
+    @Autowired
+    private QuadraRepository quadraRepository;
 
     @Transactional(readOnly = true)
     public ReservaDTO findById(Long id) {

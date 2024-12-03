@@ -49,7 +49,7 @@ public class ReservaDTO {
     public ReservaDTO(Reserva entity) {
         this.id = entity.getId();
         this.usuarioId = entity.getUsuario().getId();;
-        //this.quadraId = entity.getQuadra().getId();
+        this.quadraId = entity.getQuadra().getId();
         this.horarioInicio = entity.getHorarioInicio();
         this.duracao = entity.getDuracao();
         this.status = entity.getStatus();

@@ -12,6 +12,9 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class QuadraService {
 
@@ -22,7 +25,22 @@ public class QuadraService {
     public QuadraDTO findById(Long id) {
         Quadra quadra = quadraRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Id não encontrado"));
-        return new QuadraDTO(quadra);//toma
+        return new QuadraDTO(quadra);
+    }
+
+    @Transactional(readOnly = true)
+    public QuadraDTO findByName(String name) {
+        Quadra quadra = quadraRepository.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("quadra não encontrado"));
+        return new QuadraDTO(quadra);
+    }
+
+    @Transactional(readOnly = true)
+    public List<QuadraDTO> findAll() {
+        List<Quadra> quadras = quadraRepository.findAll();
+        return quadras.stream()
+                .map(quadra -> new QuadraDTO(quadra))
+                .collect(Collectors.toList());
     }
 
     @Transactional

@@ -21,8 +21,9 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@JoinColumn(name = "quadra_id", nullable = false)
-    //private Quadra quadra;
+    @ManyToOne
+    @JoinColumn(name = "quadra_id", nullable = false)
+    private Quadra quadra;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)

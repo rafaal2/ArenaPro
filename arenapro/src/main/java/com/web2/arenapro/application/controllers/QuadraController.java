@@ -22,6 +22,18 @@ public class QuadraController {
         return ResponseEntity.ok(quadraDTO);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<QuadraDTO> findByName(@PathVariable String name) {
+        QuadraDTO quadraDTO = service.findByName(name);
+        return ResponseEntity.ok(quadraDTO);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<QuadraDTO> findAll() {
+        QuadraDTO quadraDTO = (QuadraDTO) service.findAll();
+        return ResponseEntity.ok(quadraDTO);
+    }
+
     @PostMapping
     public ResponseEntity<QuadraDTO> save(@RequestBody QuadraDTO quadraDTO) {
         quadraDTO = service.save(quadraDTO);
