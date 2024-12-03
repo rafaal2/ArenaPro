@@ -22,7 +22,7 @@ public class QuadraService {
     public QuadraDTO findById(Long id) {
         Quadra quadra = quadraRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Id não encontrado"));
-        return new QuadraDTO(quadra);
+        return new QuadraDTO(quadra);//toma
     }
 
     @Transactional
