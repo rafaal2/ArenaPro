@@ -42,4 +42,12 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
+        boolean isAuthenticated = service.autenticarUsuario(email, senha);
+        return isAuthenticated
+                ? ResponseEntity.ok("Login bem-sucedido")
+                : ResponseEntity.status(401).body("Credenciais inválidas");
+    }
+
 }

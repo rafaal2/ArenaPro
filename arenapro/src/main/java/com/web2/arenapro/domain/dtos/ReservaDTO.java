@@ -24,6 +24,7 @@ public class ReservaDTO {
 
     private Long id;
 
+    @JsonProperty("quadraId")
     @NotNull(message = "Quadra obrigatória")
     private Long quadraId;
 
