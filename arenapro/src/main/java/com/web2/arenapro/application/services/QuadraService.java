@@ -21,10 +21,13 @@ public class QuadraService {
     @Autowired
     private QuadraRepository quadraRepository;
 
+<<<<<<< HEAD
     @Transactional
     public List<Quadra> findAll(){
         return quadraRepository.findAll();
     }
+=======
+>>>>>>> 8ca82509d4c80032d72cc1426d5a635410d1c945
     @Transactional(readOnly = true)
     public QuadraDTO findById(Long id) {
         Quadra quadra = quadraRepository.findById(id)
@@ -32,6 +35,24 @@ public class QuadraService {
         return new QuadraDTO(quadra);
     }
 
+<<<<<<< HEAD
+=======
+    @Transactional(readOnly = true)
+    public QuadraDTO findByName(String name) {
+        Quadra quadra = quadraRepository.findByName(name)
+                .orElseThrow(() -> new ResourceNotFoundException("quadra não encontrado"));
+        return new QuadraDTO(quadra);
+    }
+
+    @Transactional(readOnly = true)
+    public List<QuadraDTO> findAll() {
+        List<Quadra> quadras = quadraRepository.findAll();
+        return quadras.stream()
+                .map(quadra -> new QuadraDTO(quadra))
+                .collect(Collectors.toList());
+    }
+
+>>>>>>> 8ca82509d4c80032d72cc1426d5a635410d1c945
     @Transactional
     public QuadraDTO save(QuadraDTO quadraDTO) {
         Quadra entity = new Quadra();
@@ -67,7 +88,11 @@ public class QuadraService {
     private void copyDtoToEntity(QuadraDTO dto, Quadra entity) {
         entity.setNome(dto.getNome());
         entity.setLocalizacao(dto.getLocalizacao());
+<<<<<<< HEAD
         entity.setTipo(dto.getTipo());
+=======
+        entity.setTipo(TiposQuadra.valueOf(dto.getTipo().toString()));
+>>>>>>> 8ca82509d4c80032d72cc1426d5a635410d1c945
         entity.setCapacidade(dto.getCapacidade());
         entity.setStatus(dto.getStatus());
     }

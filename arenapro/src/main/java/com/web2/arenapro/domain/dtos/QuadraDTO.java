@@ -27,7 +27,11 @@ public class QuadraDTO {
     private String localizacao;
 
     @NotNull(message = "O tipo da quadra é obrigatório")
+<<<<<<< HEAD
     private String tipo;
+=======
+    private TiposQuadra tipo;
+>>>>>>> 8ca82509d4c80032d72cc1426d5a635410d1c945
 
     @NotNull(message = "A capacidade é obrigatória")
     private Integer capacidade;

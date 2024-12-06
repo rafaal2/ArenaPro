@@ -27,7 +27,12 @@ public class Quadra {
     private String localizacao;
 
     @Column(nullable = false)
+<<<<<<< HEAD
     private String tipo;
+=======
+    @Enumerated(EnumType.STRING)
+    private TiposQuadra tipo;
+>>>>>>> 8ca82509d4c80032d72cc1426d5a635410d1c945
 
     @Column(nullable = false)
     private Integer capacidade;
@@ -35,9 +40,17 @@ public class Quadra {
     @Column(nullable = false)
     private Boolean status;
 
+<<<<<<< HEAD
 //    @OneToMany(mappedBy = "quadra", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Reserva> reservas;
 
 //    @OneToMany(mappedBy = "quadra", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Horarios> horariosDisponiveis;
+=======
+    @OneToMany(mappedBy = "quadra", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reserva> reservas;
+
+    @OneToMany(mappedBy = "quadra", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Horarios> horariosDisponiveis;
+>>>>>>> 8ca82509d4c80032d72cc1426d5a635410d1c945
 }
