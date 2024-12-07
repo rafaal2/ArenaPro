@@ -1,6 +1,5 @@
 package com.web2.login_service.service;
 
-import com.web2.arenapro.domain.entities.Usuario;
 import com.web2.login_service.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
