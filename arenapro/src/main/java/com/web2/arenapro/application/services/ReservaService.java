@@ -4,6 +4,7 @@ import com.web2.arenapro.application.services.exceptions.DatabaseException;
 import com.web2.arenapro.application.services.exceptions.ResourceNotFoundException;
 import com.web2.arenapro.domain.dtos.ReservaDTO;
 import com.web2.arenapro.domain.dtos.UsuarioDTO;
+import com.web2.arenapro.domain.entities.Quadra;
 import com.web2.arenapro.domain.entities.Reserva;
 import com.web2.arenapro.domain.entities.Usuario;
 import com.web2.arenapro.domain.repositories.QuadraRepository;
@@ -76,18 +77,16 @@ public class ReservaService {
 
     private void copyDtoToEntity(ReservaDTO dto, Reserva entity) {
 
-        System.out.println("Usuario ID no DTO: " + dto.getUsuarioId());
+        Usuario usuario = usuarioRepository.findById(dto.getUsuarioId()).get();
 
-        Usuario usuario = usuarioRepository.findById(dto.getUsuarioId())
-                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado"));
-
-        System.out.println("Usuario encontrado: " + usuario.getId() + " - " + usuario.getNome());
+        Quadra quadra = quadraRepository.findById(dto.getQuadraId()).get();
 
         entity.setUsuario(usuario);
         entity.setData(dto.getData());
         entity.setHorarioInicio(dto.getHorarioInicio());
         entity.setDuracao(dto.getDuracao());
         entity.setStatus(dto.getStatus());
+        entity.setQuadra(quadra);
     }
 
 }

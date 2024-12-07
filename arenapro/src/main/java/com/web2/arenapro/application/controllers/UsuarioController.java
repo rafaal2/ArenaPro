@@ -1,6 +1,7 @@
 package com.web2.arenapro.application.controllers;
 
 import com.web2.arenapro.application.services.UsuarioService;
+import com.web2.arenapro.domain.dtos.LoginRequest;
 import com.web2.arenapro.domain.dtos.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,14 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        boolean isAuthenticated = service.autenticarUsuario(loginRequest.getEmail(), loginRequest.getSenha());
+        return isAuthenticated
+                ? ResponseEntity.ok("Login bem-sucedido")
+                : ResponseEntity.status(401).body("Credenciais inválidas");
     }
 
 }
