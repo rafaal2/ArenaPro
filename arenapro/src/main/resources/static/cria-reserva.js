@@ -28,15 +28,16 @@ async function criarReserva(event) {
     const formData = new FormData(form);
 
     const reserva = {
-        quadraId: formData.get("quadra").get,
+        quadraId: formData.get("quadra"),
         data: formData.get("data"),
         horarioInicio: formData.get("horarioInicio"),
         duracao: formData.get("duracao"),
         status: formData.get("status")
     };
 
+    console.log("Reserva a ser enviada:", reserva);
+
     try {
-        console.log("Reserva que está sendo enviada:", reserva);
         const response = await fetch("http://localhost:8080/reservas", {
             method: "POST",
             headers: {
@@ -51,7 +52,7 @@ async function criarReserva(event) {
 
         const result = await response.json();
         const message = document.getElementById("message");
-        message.textContent = `Reserva criada com sucesso! ID: ${result.id}`;
+        message.textContent = `Reserva criada com sucesso. ID: ${result.id}`;
         form.reset();
     } catch (error) {
         console.error("Erro ao criar reserva:", error);
@@ -60,7 +61,6 @@ async function criarReserva(event) {
     }
 }
 
-// Carrega as quadras assim que a página for carregada
 document.addEventListener("DOMContentLoaded", () => {
     carregarQuadras();
 

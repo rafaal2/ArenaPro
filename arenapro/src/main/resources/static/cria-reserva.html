@@ -12,35 +12,33 @@
         <h1>Criar Reserva</h1>
     </header>
 
-    <!-- Formulário de criação de reserva -->
     <form id="formReserva">
         <div class="campo">
             <label for="quadra">Selecione a Quadra:</label>
-            <select id="quadra" required>
+            <select name="quadra" id="quadra" required>
                 <option value="">Selecione...</option>
             </select>
         </div>
 
         <div class="campo">
             <label for="data">Data:</label>
-            <input type="date" id="data" required>
+            <input type="date" name="data" id="data" required>
         </div>
 
         <div class="campo">
             <label for="horarioInicio">Horário Início:</label>
-            <input type="time" id="horarioInicio" required>
+            <input type="time" name="horarioInicio" id="horarioInicio" required>
         </div>
 
         <div class="campo">
             <label for="duracao">Duração (horas):</label>
-            <input type="number" id="duracao" min="1" required>
+            <input type="number" name="duracao" id="duracao" min="1" required>
         </div>
 
         <div class="campo">
             <label for="status">Status:</label>
-            <select id="status" required>
+            <select name="status" id="status" required>
                 <option value="RESERVADO">RESERVADO</option>
-                <option value="DISPONIVEL">DISPONIVEL</option>
             </select>
         </div>
 
