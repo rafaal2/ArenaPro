@@ -12,7 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@CrossOrigin(origins = "file:///C:/Users/rafae/Downloads/front/quadras/index.html")
+// @CrossOrigin(origins = "file:///C:/Users/rafae/Downloads/front/quadras/index.html")
 
 @RestController
 @RequestMapping(value = "/quadras")
@@ -22,9 +22,9 @@ public class QuadraController {
     private QuadraService service;
 
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<QuadraDTO> findAll() {
-        QuadraDTO quadraDTO = (QuadraDTO) service.findAll();
+    @GetMapping
+    public ResponseEntity<List<QuadraDTO>> findAll() {
+        List<QuadraDTO> quadraDTO = service.findAll();
         return ResponseEntity.ok(quadraDTO);
     }
 
