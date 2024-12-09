@@ -20,7 +20,6 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReservaDTO {
-    String tor = "tor";
 
     private Long id;
 
