@@ -29,6 +29,8 @@ public class UsuarioService {
     @Autowired
     private RestTemplate restTemplate;
 
+    private Long usuarioLogado;
+
     @Transactional(readOnly = true)
     public UsuarioDTO findById(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(
@@ -87,10 +89,15 @@ public class UsuarioService {
         try {
             String loginServiceUrl = "http://localhost:8081/auth/login";
             ResponseEntity<String> response = restTemplate.postForEntity(loginServiceUrl, loginRequest, String.class);
+            usuarioLogado = usuarioRepository.findByEmail(loginRequest.getEmail()).get().getId();
             return response.getStatusCode().is2xxSuccessful();
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public Long getUsuarioLogado() {
+        return usuarioLogado;
     }
 
     private void copyDtoToEntity(UsuarioDTO usuarioDTO, Usuario entity) {

@@ -1,6 +1,7 @@
 package com.web2.arenapro.application.controllers;
 
 import com.web2.arenapro.application.services.ReservaService;
+import com.web2.arenapro.application.services.UsuarioService;
 import com.web2.arenapro.domain.dtos.ReservaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,9 @@ public class ReservaController {
     @Autowired
     private ReservaService service;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<ReservaDTO> findById(@PathVariable Long id) {
         ReservaDTO reservaDTO = service.findById(id);
@@ -24,7 +28,8 @@ public class ReservaController {
 
     @PostMapping
     public ResponseEntity<ReservaDTO> save(@RequestBody ReservaDTO reservaDTO) {
-            reservaDTO = service.save(reservaDTO);
+        reservaDTO.setUsuarioId(usuarioService.getUsuarioLogado());
+        reservaDTO = service.save(reservaDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(reservaDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(reservaDTO);

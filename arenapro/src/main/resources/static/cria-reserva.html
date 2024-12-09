@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Reserva</title>
+    <link rel="stylesheet" href="cria-reserva.css">
+</head>
+<body>
+<div class="container">
+    <header class="titulo">
+        <h1>Criar Reserva</h1>
+    </header>
+
+    <form id="formReserva">
+        <div class="campo">
+            <label for="quadra">Selecione a Quadra:</label>
+            <select name="quadra" id="quadra" required>
+                <option value="">Selecione...</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="data">Data:</label>
+            <input type="date" name="data" id="data" required>
+        </div>
+
+        <div class="campo">
+            <label for="horarioInicio">Horário Início:</label>
+            <input type="time" name="horarioInicio" id="horarioInicio" required>
+        </div>
+
+        <div class="campo">
+            <label for="duracao">Duração (horas):</label>
+            <input type="number" name="duracao" id="duracao" min="1" required>
+        </div>
+
+        <div class="campo">
+            <label for="status">Status:</label>
+            <select name="status" id="status" required>
+                <option value="RESERVADO">RESERVADO</option>
+            </select>
+        </div>
+
+        <button type="submit">Criar Reserva</button>
+    </form>
+
+    <div id="message"></div>
+</div>
+
+<script src="cria-reserva.js"></script>
+</body>
+</html>

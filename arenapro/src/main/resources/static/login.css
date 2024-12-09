@@ -1,0 +1,69 @@
+/* Adicionando estilo para o formulário */
+.form {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #ff8c42;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
+}
+
+button {
+    background-color: #ff8c42; /* Laranja */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e66a1f; /* Laranja escuro */
+}
+
+#btnRegistro {
+    background-color: #e66a1f; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+#btnRegistro:hover {
+    background-color: #e66a1f; /* Verde escuro */
+}
