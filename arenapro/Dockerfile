@@ -2,25 +2,29 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copia todos os arquivos do projeto para o container
-COPY . .
+# Copia o Maven Wrapper e o diretório .mvn
+COPY mvnw .
+COPY mvnw.cmd .
+COPY .mvn .mvn
+
+# Copia o pom.xml
+COPY pom.xml .
+
+# Copia o diretório src
+COPY src ./src
 
 # Concede permissão de execução ao Maven Wrapper
 RUN chmod +x mvnw
 
-# Limpa o cache local e executa o build
+# Executa o build sem testes
 RUN ./mvnw clean install -DskipTests
-
-
-# Constrói o JAR do projeto
-RUN ./mvnw clean package -DskipTests
 
 # Etapa de Execução
 FROM eclipse-temurin:17
 WORKDIR /app
 
 # Copiar o JAR gerado para o container final
-COPY --from=build /app/target/arenapro.jar app.jar
+COPY --from=build /app/target/arenapro-0.0.1-SNAPSHOT.jar app.jar
 
 # Expor a porta do serviço
 EXPOSE 8080

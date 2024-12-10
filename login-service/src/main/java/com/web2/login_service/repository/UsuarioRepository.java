@@ -1,6 +1,7 @@
 package com.web2.login_service.repository;
 
-import com.web2.arenapro.domain.entities.Usuario;
+
+import com.web2.login_service.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
