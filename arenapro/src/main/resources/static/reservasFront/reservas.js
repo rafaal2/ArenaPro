@@ -36,12 +36,18 @@ async function carregarReservas() {
                 dataDiv.textContent = `Data: ${reserva.data} - Horário: ${reserva.horarioInicio}`;
 
                 const statusDiv = document.createElement("div");
-                statusDiv.className = "data-criacao";
+                statusDiv.className = "status-reserva";
                 statusDiv.textContent = `Status: ${reserva.status}`;
+
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "delete-button";
+                deleteButton.textContent = "Excluir";
+                deleteButton.addEventListener("click", () => deletarReserva(reserva.id));
 
                 itemDiv.appendChild(textoDiv);
                 itemDiv.appendChild(dataDiv);
                 itemDiv.appendChild(statusDiv);
+                itemDiv.appendChild(deleteButton);
 
                 listaPerguntasDiv.appendChild(itemDiv);
             });
@@ -51,6 +57,28 @@ async function carregarReservas() {
         listaPerguntasDiv.innerHTML = "<p>Erro ao carregar reservas.</p>";
     } finally {
         loadingDiv.style.display = "none";
+    }
+}
+
+async function deletarReserva(id) {
+    if (!confirm("Tem certeza de que deseja excluir esta reserva?")) {
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8080/reservas/${id}`, {
+            method: "DELETE",
+        });
+
+        if (!response.ok) {
+            throw new Error("Erro ao excluir a reserva.");
+        }
+
+        alert("Reserva excluída com sucesso!");
+        carregarReservas();
+    } catch (error) {
+        console.error("Erro ao excluir reserva:", error);
+        alert("Não foi possível excluir a reserva. Tente novamente mais tarde.");
     }
 }
 
