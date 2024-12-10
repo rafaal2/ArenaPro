@@ -14,7 +14,6 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="arenapro" options="-parameters" />
       <module name="arenapro (1) (com.web2)" options="-parameters" />
       <module name="login-service" options="-parameters" />
     </option>
