@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Reserva</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Adicionar Quadra</title>
+    <link rel="stylesheet" href="cria-quadra.css">
 </head>
 <body>
 <div class="container">
@@ -12,34 +12,33 @@
         <h1>Adicionar Quadra</h1>
     </header>
 
-    <form id="formReserva">
+    <form id="formQuadra">
         <div class="campo">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome" required>
         </div>
 
         <div class="campo">
-            <label for="localização">localização:</label>
-            <input type="text" name="localização" id="localização" required>
+            <label for="localizacao">Localização:</label>
+            <input type="text" name="localizacao" id="localizacao" required>
         </div>
 
         <div class="campo">
-            <label for="tipo">tipo:</label>
+            <label for="tipo">Tipo:</label>
             <input type="text" name="tipo" id="tipo" required>
         </div>
 
         <div class="campo">
-            <label for="capacidade">capacidade:</label>
-            <input type="text" name="capacidade" id="capacidade" required>
+            <label for="capacidade">Capacidade:</label>
+            <input type="number" name="capacidade" id="capacidade" min="1" required>
         </div>
 
-
-        <button type="submit">Criar Reserva</button>
+        <button type="submit">Criar Quadra</button>
     </form>
 
     <div id="message"></div>
 </div>
 
-<script src="script.js"></script>
+<script src="cria-quadra.js"></script>
 </body>
 </html>
