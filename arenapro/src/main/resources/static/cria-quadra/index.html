@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Reserva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <header class="titulo">
+        <h1>Adicionar Quadra</h1>
+    </header>
+
+    <form id="formReserva">
+        <div class="campo">
+            <label for="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" required>
+        </div>
+
+        <div class="campo">
+            <label for="localização">localização:</label>
+            <input type="text" name="localização" id="localização" required>
+        </div>
+
+        <div class="campo">
+            <label for="tipo">tipo:</label>
+            <input type="text" name="tipo" id="tipo" required>
+        </div>
+
+        <div class="campo">
+            <label for="capacidade">capacidade:</label>
+            <input type="text" name="capacidade" id="capacidade" required>
+        </div>
+
+
+        <button type="submit">Criar Reserva</button>
+    </form>
+
+    <div id="message"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

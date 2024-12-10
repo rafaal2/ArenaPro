@@ -18,7 +18,7 @@ document.getElementById('registroForm').addEventListener('submit', async functio
 
         if (response.ok) {
             alert('Usuário registrado com sucesso!');
-            window.location.href = './login.html';
+            window.location.href = '../login/login.html';
         } else {
             const errorData = await response.json();
             alert(errorData.message || 'Falha ao registrar usuário.');

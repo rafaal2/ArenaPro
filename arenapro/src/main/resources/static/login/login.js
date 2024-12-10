@@ -14,7 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         });
 
         if (response.ok) {
-            window.location.href = 'home.html';
+            window.location.href = '../home/home.html';
         } else {
             const errorData = await response.json();
             alert(errorData.message || 'Login falhou. Verifique suas credenciais.');
@@ -28,6 +28,6 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 });
 
 document.getElementById('btnRegistro').addEventListener('click', function () {
-    window.location.href = './registro.html';
+    window.location.href = '../registro/registro.html';
 });
 
