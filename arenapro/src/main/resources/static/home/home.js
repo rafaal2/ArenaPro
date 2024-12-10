@@ -1,10 +1,10 @@
 
 document.getElementById('btnPerguntas').addEventListener('click', function() {
-    window.location.href = '../quadras/quadras.html';
+    window.location.href = '../quadraFront/quadras.html';
 });
 
 document.getElementById('btnAtividades').addEventListener('click', function() {
-    window.location.href = '../reservas/reservas.html';
+    window.location.href = '../reservasFront/reservas.html';
 });
 
 document.getElementById('btnCriarReserva').addEventListener('click', function() {

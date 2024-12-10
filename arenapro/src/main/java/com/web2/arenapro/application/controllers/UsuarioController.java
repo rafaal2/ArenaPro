@@ -57,4 +57,10 @@ public class UsuarioController {
                 : ResponseEntity.status(401).body("Credenciais inválidas");
     }
 
+    @GetMapping(value = "/usuario-logado")
+    public ResponseEntity<Long> getUsuarioLogado() {
+        Long usuarioLogadoId = service.getUsuarioLogado();
+        return ResponseEntity.ok(usuarioLogadoId);
+    }
+
 }

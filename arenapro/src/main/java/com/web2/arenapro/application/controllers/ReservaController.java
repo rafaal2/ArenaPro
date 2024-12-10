@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/reservas")
@@ -25,6 +26,18 @@ public class ReservaController {
         ReservaDTO reservaDTO = service.findById(id);
         return ResponseEntity.ok(reservaDTO);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ReservaDTO>> findAll(@RequestParam(required = false) Long usuarioId) {
+        List<ReservaDTO> reservaDTO;
+        if (usuarioId != null) {
+            reservaDTO = service.findByUsuarioId(usuarioId);
+        } else {
+            reservaDTO = service.findAll();
+        }
+        return ResponseEntity.ok(reservaDTO);
+    }
+
 
     @PostMapping
     public ResponseEntity<ReservaDTO> save(@RequestBody ReservaDTO reservaDTO) {

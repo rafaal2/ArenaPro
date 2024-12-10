@@ -3,6 +3,7 @@ package com.web2.arenapro.application.services;
 import com.web2.arenapro.application.services.exceptions.DatabaseException;
 import com.web2.arenapro.application.services.exceptions.ResourceNotFoundException;
 import com.web2.arenapro.domain.dtos.ReservaDTO;
+import com.web2.arenapro.domain.dtos.ReservaDTO;
 import com.web2.arenapro.domain.dtos.UsuarioDTO;
 import com.web2.arenapro.domain.entities.Quadra;
 import com.web2.arenapro.domain.entities.Reserva;
@@ -15,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservaService {
@@ -35,6 +39,21 @@ public class ReservaService {
         );
         return new ReservaDTO(reserva);
     }
+
+    @Transactional(readOnly = true)
+    public List<ReservaDTO> findAll() {
+        List<Reserva> reservas = reservaRepository.findAll();
+        return reservas.stream()
+                .map(reserva -> new ReservaDTO(reserva))
+                .collect(Collectors.toList());
+    }
+    
+    @Transactional(readOnly = true)
+    public List<ReservaDTO> findByUsuarioId(Long usuarioId) {
+        List<Reserva> reservas = reservaRepository.findByUsuarioId(usuarioId);
+        return reservas.stream().map(ReservaDTO::new).collect(Collectors.toList());
+    }
+
 
     @Transactional
     public ReservaDTO save(ReservaDTO reservaDTO) {
