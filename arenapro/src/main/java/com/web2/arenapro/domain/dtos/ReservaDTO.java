@@ -46,6 +46,8 @@ public class ReservaDTO {
     @Size(max = 20, message = "O status deve ter no máximo 20 caracteres")
     private StatusReserva status;
 
+    private String quadraNome;
+
     public ReservaDTO(Reserva entity) {
         this.id = entity.getId();
         this.usuarioId = entity.getUsuario().getId();;
@@ -53,5 +55,7 @@ public class ReservaDTO {
         this.horarioInicio = entity.getHorarioInicio();
         this.duracao = entity.getDuracao();
         this.status = entity.getStatus();
+        this.data = entity.getData();
+        this.quadraNome = entity.getQuadra().getNome();
     }
 }
