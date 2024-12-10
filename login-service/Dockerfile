@@ -10,7 +10,7 @@ COPY . .
 RUN chmod +x mvnw
 
 # Limpa o cache local e executa o build
-RUN ./mvnw clean dependency:purge-local-repository -DskipTests
+RUN ./mvnw clean install -DskipTests
 
 # Constrói o JAR do projeto
 RUN ./mvnw clean package -DskipTests
