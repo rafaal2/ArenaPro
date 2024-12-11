@@ -67,6 +67,7 @@ public class QuadraService {
         entity.setLocalizacao(dto.getLocalizacao());
         entity.setTipo(dto.getTipo());
         entity.setCapacidade(dto.getCapacidade());
+        entity.setFotoUrl(dto.getFotoUrl());
         entity.setStatus(dto.getStatus());
     }
 }

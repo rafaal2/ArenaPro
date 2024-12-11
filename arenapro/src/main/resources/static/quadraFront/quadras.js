@@ -1,17 +1,11 @@
-// URL da API
 const apiQuadrasUrl = 'http://localhost:8080/quadras';
 
-// Seleciona o elemento onde as quadras serão exibidas
 const listaQuadras = document.getElementById('listaQuadras');
 
-// Seleciona o elemento do indicador de carregamento
 const loadingQuadrasDiv = document.getElementById('loadingQuadras');
 
-// Função para buscar e exibir as quadras
 function carregarQuadras() {
-    // Mostrar o indicador de carregamento
     loadingQuadrasDiv.style.display = 'block';
-    // Esconder a lista de quadras enquanto carrega
     listaQuadras.style.display = 'none';
 
     fetch(apiQuadrasUrl)
@@ -46,10 +40,29 @@ function carregarQuadras() {
                     capacidadeQuadra.classList.add('capacidade-quadra');
                     capacidadeQuadra.textContent = `Capacidade: ${quadra.capacidade} pessoas`;
 
+                    const fotoQuadra = document.createElement('div');
+                    fotoQuadra.classList.add('foto-quadra');
+
+                    if (quadra.fotoUrl && quadra.fotoUrl.trim() !== "") {
+                        const imgQuadra = document.createElement('img');
+                        imgQuadra.src = quadra.fotoUrl;
+                        imgQuadra.alt = `Foto da quadra ${quadra.nome}`;
+                        imgQuadra.style.width = '100%';
+                        imgQuadra.style.borderRadius = '10px';
+                        fotoQuadra.appendChild(imgQuadra);
+                    } else {
+                        const semFotoMsg = document.createElement('p');
+                        semFotoMsg.textContent = 'Sem foto disponível';
+                        semFotoMsg.style.color = '#999';
+                        semFotoMsg.style.fontStyle = 'italic';
+                        fotoQuadra.appendChild(semFotoMsg);
+                    }
+
                     quadraDiv.appendChild(nomeQuadra);
                     quadraDiv.appendChild(localizacaoQuadra);
                     quadraDiv.appendChild(tipoQuadra);
                     quadraDiv.appendChild(capacidadeQuadra);
+                    quadraDiv.appendChild(fotoQuadra);
 
                     listaQuadras.appendChild(quadraDiv);
                 });

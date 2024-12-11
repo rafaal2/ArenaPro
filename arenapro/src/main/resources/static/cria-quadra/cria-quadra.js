@@ -1,5 +1,3 @@
-// cria-quadra.js
-
 async function criarQuadra(event) {
     event.preventDefault();
 
@@ -11,7 +9,8 @@ async function criarQuadra(event) {
         localizacao: formData.get("localizacao"),
         tipo: formData.get("tipo"),
         capacidade: parseInt(formData.get("capacidade"), 10),
-        status: true // Definindo status como true automaticamente
+        fotoUrl: formData.get("fotoUrl"),
+        status: true
     };
 
     console.log("Quadra a ser enviada:", quadra);

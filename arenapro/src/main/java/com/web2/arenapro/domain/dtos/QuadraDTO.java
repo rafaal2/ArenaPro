@@ -32,6 +32,9 @@ public class QuadraDTO {
     @NotNull(message = "A capacidade é obrigatória")
     private Integer capacidade;
 
+    @NotNull(message = "A capacidade é obrigatória")
+    private String fotoUrl;
+
     @NotNull(message = "O status da quadra é obrigatório")
     private Boolean status;
 
@@ -41,6 +44,7 @@ public class QuadraDTO {
         this.localizacao = entity.getLocalizacao();
         this.tipo = entity.getTipo();
         this.capacidade = entity.getCapacidade();
+        this.fotoUrl = entity.getFotoUrl();
         this.status = entity.getStatus();
     }
 }

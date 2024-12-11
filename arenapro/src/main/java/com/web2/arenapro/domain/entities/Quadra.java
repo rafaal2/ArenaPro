@@ -32,8 +32,13 @@ public class Quadra {
     @Column(nullable = false)
     private Integer capacidade;
 
+    @Column(nullable = false, length = 500)
+    private String fotoUrl;
+
     @Column(nullable = false)
     private Boolean status;
+
+
 
 //    @OneToMany(mappedBy = "quadra", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Reserva> reservas;
