@@ -25,10 +25,8 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
     @Autowired
     private RestTemplate restTemplate;
-
     private Long usuarioLogado;
 
     @Transactional(readOnly = true)
@@ -45,7 +43,7 @@ public class UsuarioService {
         Usuario entity = new Usuario();
 
         copyDtoToEntity(usuarioDTO, entity);
-
+        entity.setRole("USER");
         entity = usuarioRepository.save(entity);
         return new UsuarioDTO(entity);
 
@@ -68,7 +66,6 @@ public class UsuarioService {
 
     }
 
-
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
 
@@ -84,15 +81,21 @@ public class UsuarioService {
 
     }
 
-    public boolean autenticarUsuario(String email, String senha) {
+    public String autenticarUsuario(String email, String senha) {
         LoginRequest loginRequest = new LoginRequest(email, senha);
         try {
             String loginServiceUrl = "http://localhost:8081/auth/login";
             ResponseEntity<String> response = restTemplate.postForEntity(loginServiceUrl, loginRequest, String.class);
-            usuarioLogado = usuarioRepository.findByEmail(loginRequest.getEmail()).get().getId();
-            return response.getStatusCode().is2xxSuccessful();
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                String token = response.getBody();
+                usuarioLogado = usuarioRepository.findByEmail(loginRequest.getEmail()).get().getId();
+                return token;
+            } else {
+                return null;
+            }
         } catch (Exception e) {
-            return false;
+            return null;
         }
     }
 

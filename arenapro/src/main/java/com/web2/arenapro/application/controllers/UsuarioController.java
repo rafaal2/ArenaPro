@@ -14,9 +14,7 @@ import java.net.URI;
 @RestController
 @RequestMapping(value = "/usuarios")
 public class UsuarioController {
-
     private static Long usuarioLogado;
-
     @Autowired
     private UsuarioService service;
     @Autowired
@@ -50,11 +48,13 @@ public class UsuarioController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        boolean isAuthenticated = service.autenticarUsuario(loginRequest.getEmail(), loginRequest.getSenha());
-        usuarioLogado = usuarioRepository.findByEmail(loginRequest.getEmail()).get().getId();
-        return isAuthenticated
-                ? ResponseEntity.ok("Login bem-sucedido")
-                : ResponseEntity.status(401).body("Credenciais inválidas");
+        String token = service.autenticarUsuario(loginRequest.getEmail(), loginRequest.getSenha());
+
+        if (token != null) {
+            return ResponseEntity.ok(token);
+        } else {
+            return ResponseEntity.status(401).body("Credenciais inválidas");
+        }
     }
 
     @GetMapping(value = "/usuario-logado")
@@ -62,5 +62,4 @@ public class UsuarioController {
         Long usuarioLogadoId = service.getUsuarioLogado();
         return ResponseEntity.ok(usuarioLogadoId);
     }
-
 }

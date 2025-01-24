@@ -35,6 +35,8 @@ public class Usuario {
     @Column(length = 11)
     private String telefone;
 
+    private String role;
+
     // @Column
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reserva> reservas;

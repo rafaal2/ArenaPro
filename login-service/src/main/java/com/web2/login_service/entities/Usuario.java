@@ -35,5 +35,6 @@ public class Usuario {
     @Column(length = 11)
     private String telefone;
 
+    private String role;
 
 }
