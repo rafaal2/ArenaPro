@@ -39,6 +39,7 @@ public class Quadra {
     private Boolean status;
 
 
+
 //    @OneToMany(mappedBy = "quadra", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<Reserva> reservas;
 

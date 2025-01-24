@@ -2,9 +2,6 @@ package com.web2.arenapro.application.controllers;
 
 import com.web2.arenapro.application.services.QuadraService;
 import com.web2.arenapro.domain.dtos.QuadraDTO;
-import com.web2.arenapro.domain.entities.Quadra;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,7 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-// @CrossOrigin(origins = "file:///C:/Users/rafae/Downloads/front/quadras/index.html")
 
 @RestController
 @RequestMapping(value = "/quadras")
