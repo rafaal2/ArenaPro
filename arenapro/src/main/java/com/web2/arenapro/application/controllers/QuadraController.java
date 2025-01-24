@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
@@ -21,7 +23,6 @@ public class QuadraController {
     @Autowired
     private QuadraService service;
 
-
     @GetMapping
     public ResponseEntity<List<QuadraDTO>> findAll() {
         List<QuadraDTO> quadraDTO = service.findAll();
@@ -30,6 +31,19 @@ public class QuadraController {
 
     @PostMapping
     public ResponseEntity<QuadraDTO> save(@RequestBody QuadraDTO quadraDTO) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Usuário autenticado: " + auth.getPrincipal());
+        System.out.println("Autoridades: " + auth.getAuthorities());
+        String role = SecurityContextHolder.getContext().getAuthentication()
+                .getAuthorities()
+                .iterator()
+                .next()
+                .getAuthority();
+
+        if (!"ADMIN".equals(role)) {
+            return ResponseEntity.status(403).build(); // Retornar 403 Forbidden se não for ADMIN
+        }
+
         quadraDTO = service.save(quadraDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(quadraDTO.getId()).toUri();

@@ -9,6 +9,7 @@ import com.web2.arenapro.domain.repositories.QuadraRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,6 @@ public class QuadraService {
     @Autowired
     private QuadraRepository quadraRepository;
 
-
     @Transactional(readOnly = true)
     public List<QuadraDTO> findAll() {
         List<Quadra> quadras = quadraRepository.findAll();
@@ -32,6 +32,17 @@ public class QuadraService {
 
     @Transactional
     public QuadraDTO save(QuadraDTO quadraDTO) {
+        String role = SecurityContextHolder.getContext().getAuthentication()
+                .getAuthorities()
+                .iterator()
+                .next()
+                .getAuthority();
+
+        // Verificar se o usuário tem a role ADMIN
+        if (!"ADMIN".equals(role)) {
+            throw new SecurityException("Usuário não autorizado a criar quadras");
+        }
+
         Quadra entity = new Quadra();
         copyDtoToEntity(quadraDTO, entity);
         entity = quadraRepository.save(entity);
@@ -67,6 +78,7 @@ public class QuadraService {
         entity.setLocalizacao(dto.getLocalizacao());
         entity.setTipo(dto.getTipo());
         entity.setCapacidade(dto.getCapacidade());
+        entity.setFotoUrl(dto.getFotoUrl());
         entity.setStatus(dto.getStatus());
     }
 }

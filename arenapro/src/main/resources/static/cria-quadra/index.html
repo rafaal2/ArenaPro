@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:foto="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,22 +19,26 @@
         </div>
 
         <div class="campo">
-            <label for="localização">localização:</label>
-            <input type="text" name="localização" id="localização" required>
+            <label for="localizacao">Localização:</label>
+            <input type="text" name="localizacao" id="localizacao" required>
         </div>
 
         <div class="campo">
-            <label for="tipo">tipo:</label>
+            <label for="tipo">Tipo:</label>
             <input type="text" name="tipo" id="tipo" required>
         </div>
 
         <div class="campo">
-            <label for="capacidade">capacidade:</label>
+            <label for="capacidade">Capacidade:</label>
             <input type="text" name="capacidade" id="capacidade" required>
         </div>
 
+        <div class="campo">
+            <label for="fotoUrl">Link da foto: </label>
+            <input type="text" name="fotoUrl" id="fotoUrl" required>
+        </div>
 
-        <button type="submit">Criar Reserva</button>
+        <button type="submit">Criar Quadra</button>
     </form>
 
     <div id="message"></div>
