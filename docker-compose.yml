@@ -6,10 +6,11 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=arenapro
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=ADS2O23
+      - MYSQL_USER=appuser
+      - MYSQL_PASSWORD=apppass
     ports:
       - "3306:3306"
+    # Se quiser forçar rede, pode fazer:
     networks:
       - arenanet
 
@@ -23,6 +24,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/arenapro
       - SPRING_DATASOURCE_USERNAME=appuser
       - SPRING_DATASOURCE_PASSWORD=apppass
+    depends_on:
+      - mysql
     networks:
       - arenanet
 
@@ -33,10 +36,11 @@ services:
       - "8081:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      # se ele também usa DB, aponte para o mesmo:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/arenapro
       - SPRING_DATASOURCE_USERNAME=appuser
       - SPRING_DATASOURCE_PASSWORD=apppass
+    depends_on:
+      - mysql
     networks:
       - arenanet
 
