@@ -1,8 +1,9 @@
 version: "3.8"
+
 services:
   login-service:
     build:
-      context: ./login-service
+      context: ./login-service     # <--- Dockerfile dentro de login-service
     ports:
       - "8081:8080"
     environment:
@@ -10,7 +11,7 @@ services:
 
   arenapro:
     build:
-      context: ./arenapro
+      context: ./arenapro         # <--- Dockerfile dentro de arenapro
     ports:
       - "8082:8080"
     environment:
