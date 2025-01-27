@@ -137,5 +137,15 @@
 			</plugin>
 			<!-- Removido o maven-jar-plugin, pois o spring-boot-maven-plugin já gerencia isso -->
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<excludes>
+					<!-- Evita filtrar application-prod.properties -->
+					<exclude>application-prod.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
 	</build>
 </project>
