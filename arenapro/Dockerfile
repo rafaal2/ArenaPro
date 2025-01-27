@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y dos2unix
 # Copia o Maven Wrapper (se quiser usar dentro do Docker)
 COPY mvnw mvnw
 COPY mvnw.cmd mvnw.cmd
-COPY .mvn .mvn
+
 
 # (Opcional) Converter CRLF → LF e remover BOM, se houver
 RUN dos2unix -f mvnw

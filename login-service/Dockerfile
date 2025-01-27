@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y dos2unix
 
 COPY mvnw mvnw
 COPY mvnw.cmd mvnw.cmd
-COPY .mvn .mvn
 
 RUN dos2unix -f mvnw
 RUN dos2unix -f mvnw.cmd || true
