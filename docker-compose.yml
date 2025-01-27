@@ -1,48 +1,58 @@
 version: "3.8"
+
 services:
   mysql:
     image: mysql:8
     container_name: mysql
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=arenapro
+      - MYSQL_DATABASE=db_quadras
       - MYSQL_USER=appuser
       - MYSQL_PASSWORD=apppass
     ports:
       - "3306:3306"
-    # Se quiser forçar rede, pode fazer:
     networks:
       - arenanet
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
   arenapro:
     build:
       context: ./arenapro
     ports:
       - "8082:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/arenapro
-      - SPRING_DATASOURCE_USERNAME=appuser
-      - SPRING_DATASOURCE_PASSWORD=apppass
-    depends_on:
-      - mysql
     networks:
       - arenanet
+    depends_on:
+      mysql:
+        condition: service_healthy  # <--- IMPORTANTE
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/db_quadras
+      - SPRING_DATASOURCE_USERNAME=appuser
+      - SPRING_DATASOURCE_PASSWORD=apppass
+      - jwt.secret=teste-super-seguro-microservices-2025
 
   login-service:
     build:
       context: ./login-service
     ports:
-      - "8081:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/arenapro
-      - SPRING_DATASOURCE_USERNAME=appuser
-      - SPRING_DATASOURCE_PASSWORD=apppass
-    depends_on:
-      - mysql
+      - "8081:8081"
     networks:
       - arenanet
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/db_quadras
+      - SPRING_DATASOURCE_USERNAME=appuser
+      - SPRING_DATASOURCE_PASSWORD=apppass
+      - jwt.secret=teste-super-seguro-microservices-2025
 
 networks:
   arenanet:
