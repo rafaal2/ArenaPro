@@ -1,0 +1,4 @@
+INSERT INTO usuario (cpf, email, nome, senha, telefone, role) VALUES ('11111111112', 'admin1@gmail.com', 'admin', 'admin', '11111111112', 'ADMIN');
+INSERT INTO usuario (cpf, email, nome, senha, telefone, role) VALUES ('11111111111', 'user@gmail.com', 'user', 'user', '11111111111', 'USER');
+
+INSERT INTO quadra (nome, tipo, localizacao, capacidade, foto_url, status) VALUES ('Mangueirão', 'Futebol', 'Paratibe', 50, 'https://s2-ge.glbimg.com/rP0wwOFbaCie-rxQceX1MuT6LTQ=/0x0:2048x1365/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2024/O/2/j3wYA7QReArfh5TZRynQ/54043628915-11ed1fcc3e-k.jpg', 1)
