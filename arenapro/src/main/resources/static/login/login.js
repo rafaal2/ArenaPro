@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const senha = document.getElementById('senha').value;
 
     try {
-        const response = await fetch('http://localhost:8080/usuarios/login', {
+        const response = await fetch('http://localhost:8082/usuarios/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,5 +33,5 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
 
 document.getElementById('btnRegistro').addEventListener('click', function () {
-    window.location.href = '../registro/registro.html';
+    window.location.href = '../registroFront/registro.html';
 });

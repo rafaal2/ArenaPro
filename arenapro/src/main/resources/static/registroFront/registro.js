@@ -8,7 +8,7 @@ document.getElementById('registroForm').addEventListener('submit', async functio
     const telefone = document.getElementById('telefone').value;
 
     try {
-        const response = await fetch('http://localhost:8080/usuarios', {
+        const response = await fetch('http://localhost:8082/usuarios', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
