@@ -29,7 +29,7 @@ services:
       - arenanet
     depends_on:
       mysql:
-        condition: service_healthy  # <--- IMPORTANTE
+        condition: service_healthy
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/db_quadras

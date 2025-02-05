@@ -105,7 +105,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-					<mainClass>com.web2.loginservice.LoginServiceApplication</mainClass> <!-- Atualizado para a classe principal correta -->
+					<mainClass>com.web2.login_service.LoginServiceApplication</mainClass> <!-- Atualizado para a classe principal correta -->
 				</configuration>
 			</plugin>
 			<plugin>
